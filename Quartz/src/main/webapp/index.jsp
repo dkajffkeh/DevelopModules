@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>골때리네..</h1>
+<h1>Quartz Project</h1>
 </body>
 </html>

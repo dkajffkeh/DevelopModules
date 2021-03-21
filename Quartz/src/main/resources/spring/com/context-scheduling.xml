@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<!-- <bean name="wordCloudJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		Quartz 1.8.x버전 -->
+	<bean name="wordCloudJob"
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean"><!-- Quartz 2.x 버전 -->
+		<property name="jobClass">
+			<value>com.home.quartz.schedule.service.BoardServiceImpl</value>
+		</property>
+		<property name="durability" value="true"></property>
+	</bean>
+
+
+	<!-- <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"> 
+		Quartz 1.8.x 버전 -->
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"><!-- Quartz 2.x 버전 -->
+		<property name="jobDetail">
+			<ref bean="wordCloudJob" />
+		</property>
+		<property name="cronExpression">
+			<!-- 매 5분마다 실행 -->
+			<!-- <value>0 0/5 * * * ?</value> -->
+			<!-- 매일 오후 3시 20분마다 실행 -->
+			<value>0 31 14 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 테스트용 스케줄러 -->
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="cronTrigger" />
+			</list>
+		</property>
+	</bean>
+
+</beans>
