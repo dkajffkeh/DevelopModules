@@ -10,7 +10,7 @@
 
 	<!-- <bean name="wordCloudJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
 		Quartz 1.8.x버전 -->
-	<bean name="wordCloudJob"
+	<bean name="testJob"
 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean"><!-- Quartz 2.x 버전 -->
 		<property name="jobClass">
 			<value>com.home.quartz.schedule.service.BoardServiceImpl</value>
@@ -24,13 +24,13 @@
 	<bean id="cronTrigger"
 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"><!-- Quartz 2.x 버전 -->
 		<property name="jobDetail">
-			<ref bean="wordCloudJob" />
+			<ref bean="testJob" />
 		</property>
 		<property name="cronExpression">
 			<!-- 매 5분마다 실행 -->
 			<!-- <value>0 0/5 * * * ?</value> -->
 			<!-- 매일 오후 3시 20분마다 실행 -->
-			<value>0 31 14 * * ?</value>
+			<value>0/10 * * * * ?</value>
 		</property>
 	</bean>
 
