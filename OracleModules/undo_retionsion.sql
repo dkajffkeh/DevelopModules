@@ -1,13 +1,16 @@
-SHOW PARAMETER UNDO_RETENTION; -- ÃÖ±Ù 
+SHOW
+PARAMETER UNDO_RETENTION; -- ï¿½Ö±ï¿½
 
--- »èÁ¦ÈÄ Ä¿¹ÔÇÑ ÀÚ·á »ì·Á³»´Â ORACLE SQL
-SELECT * FROM [»èÁ¦¸¦ ÁøÇàÇÑ TABLE ÀÌ¸§]
- AS OF TIMESTAMP (SYSTIMESTAMP-INTERVAL '15' MINUTE)
- WHERE [»èÁ¦ÇÑ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿À´Â Á¶°Ç¹® ÀÚ¸®];
- 
- 
- -- »èÁ¦ÈÄ Ä¿¹ÔÇÑ ÀÚ·á »ì·Á³»´Â ORACLE SQL
-INSERT INTO [º¹±¸ÁøÇàÇÒ Å×ÀÌºí¸í]
-SELECT * FROM [»èÁ¦¸¦ ÁøÇàÇÑ TABLE ÀÌ¸§]
- AS OF TIMESTAMP (SYSTIMESTAMP-INTERVAL '15' MINUTE)
- WHERE [»èÁ¦ÇÑ µ¥ÀÌÅÍ¸¦ ºÒ·¯¿À´Â Á¶°Ç¹® ÀÚ¸®];
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ORACLE SQL
+SELECT *
+FROM [ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ TABLE ï¿½Ì¸ï¿½]
+    AS OF TIMESTAMP (SYSTIMESTAMP- INTERVAL '15' MINUTE)
+WHERE [ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ ï¿½Ú¸ï¿½];
+
+
+-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ORACLE SQL
+INSERT INTO [ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½]
+SELECT *
+FROM [ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ TABLE ï¿½Ì¸ï¿½]
+    AS OF TIMESTAMP (SYSTIMESTAMP- INTERVAL '15' MINUTE)
+WHERE [ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ ï¿½Ú¸ï¿½];

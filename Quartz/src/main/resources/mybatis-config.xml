@@ -2,15 +2,15 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 
 <configuration>
-	
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
-	</settings>
-	
-	<typeAliases>
-	</typeAliases>
-	 
-	<mappers>
-	</mappers>
+
+    <settings>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+
+    <typeAliases>
+    </typeAliases>
+
+    <mappers>
+    </mappers>
 
 </configuration>

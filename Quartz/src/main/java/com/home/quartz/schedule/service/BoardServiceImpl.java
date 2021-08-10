@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 @Service("boardService")
 public class BoardServiceImpl extends QuartzJobBean implements BoardService {
 
-   @Override
+    @Override
     public void testJobMethod() {
-	   
 
-    	System.out.println("test job....");
+
+        System.out.println("test job....");
 
     }
 
-	@Override
-	protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
-		System.out.println("test job....");
-		
-	}
+    @Override
+    protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
+        System.out.println("test job....");
+
+    }
 
 }
