@@ -1,13 +1,13 @@
-package com.basicmodule.security;
+package com.home.testp.testp.security;
 
-import com.basicmodule.user.vo.RequestLogin;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.home.testp.testp.vo.RequestLogin;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
+import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,30 +18,26 @@ import java.util.ArrayList;
 
 /* Filter 에서는 유일하게 request 와 response 에 대한 변조가 가능함. */
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    /* 1차 적으로 Filter 를 통하여 아이디와 비밀번호를 입력받음 */
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
                                                 HttpServletResponse response) throws AuthenticationException {
+        // request 와 response 는 한번 변조 또는 읽고나면 그 값을 더이상 읽일수 없기때문에 캐시에 담아놓는 작업이 필요함.
+        ContentCachingRequestWrapper httpServletRequest = new ContentCachingRequestWrapper((ContentCachingRequestWrapper)request);
+        ContentCachingResponseWrapper httpServletResponse = new ContentCachingResponseWrapper((ContentCachingResponseWrapper)response);
 
-        ContentCachingRequestWrapper cacheRequest = new ContentCachingRequestWrapper(request);
-        try {
-            // POST 방식으로 넘긴 JSON 을 request 형태로 받으려면 getInputStream 으로 받아야함.  1. 로그인 정보가 가장먼저 적재 되는곳.
-            RequestLogin creds = new ObjectMapper().readValue(request.getInputStream(), RequestLogin.class);
-
-            //이렇게 인증으로 넘기면 Spring security 에서 아이디와 비밀번호를 비교 해주겠다는 의미.
-            return getAuthenticationManager()
-                    .authenticate(
-                            new UsernamePasswordAuthenticationToken(
-                                    creds.getEmail()
-                                    , creds.getPassword()
-                                    , new ArrayList<>()
-                            )
-                    );
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        try{
+            RequestLogin creds = new ObjectMapper().readValue(httpServletRequest.getInputStream()
+                                                             ,RequestLogin.class);
+            return getAuthenticationManager().authenticate(
+                     new UsernamePasswordAuthenticationToken(creds.getEmail()
+                                                            ,creds.getPassword()
+                                                            ,new ArrayList<>()
+                                                            )
+                                                          );
+        } catch (Exception e) {
+                 throw new RuntimeException(e);
         }
-
     }
 
 
@@ -50,6 +46,6 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-        logger.debug( ((User)authResult.getPrincipal()).getUsername() );
+        super.successfulAuthentication(request, response, chain, authResult);
     }
 }

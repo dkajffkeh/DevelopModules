@@ -1,9 +1,9 @@
-package com.basicmodule.user.controller;
+package com.home.testp.testp.controller;
 
-import com.basicmodule.user.dto.UserDto;
-import com.basicmodule.user.service.UserService;
-import com.basicmodule.user.vo.RequestUser;
-import com.basicmodule.user.vo.ResponseUser;
+import com.home.testp.testp.dto.UserDto;
+import com.home.testp.testp.service.UserService;
+import com.home.testp.testp.vo.RequestUser;
+import com.home.testp.testp.vo.ResponseUser;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
