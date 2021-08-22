@@ -13,6 +13,7 @@ public class SpringbootibatisprojectmoduleApplication {
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
-
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 }
